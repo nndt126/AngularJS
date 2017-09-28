@@ -1,0 +1,32 @@
+<table class="md-table">
+        <thead class="thead-inverse">
+            <tr class="md-table-headers-row">
+                <td class="table-info">Sr No.</td>
+                <td class="table-active">First Name</td>
+                <td class="table-success">Last Name</td>
+                <td class="table-warning">BirthDay</td>
+                <td class="table-danger">Salary</td>
+                <td class="table-info">About</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="md-table-content-row" ng-repeat="employee in employees | orderBy:sortColumn">
+                <td>{{$index + 1}}</td>
+                <td class="md-table-content">
+                    <!-- ng-model chỉ áp dụng cho những dạng input cho form -->
+                    <!-- <input type="text" ng-model="employee.firstName"> -->
+                    {{employee.firstName | uppercase}}
+                </td>
+                <td class="md-table-content">{{employee.lastName | lowercase}}</td>
+                <td class="md-table-content">{{employee.birthDate | date : "dd/MM/yyyy"}}</td>
+                <td class="md-table-content">{{employee.salary | currency}}</td>
+                <td class="md-table-content">
+                    <ul>
+                        <li ng-repeat="about in employee.abouts">
+                            {{about.sex}} {{about.address}} - Index {{$index}} - Parent Index {{$parent.$index}}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+</table>
